@@ -1,0 +1,911 @@
+//text colors
+$textbackground: #ffffff;
+$textcolor: #333333;
+$textcolorlight: #ffffff;
+
+//other colors
+$uidark: #434747;
+$uimedium: #D7E0E0;
+$uimediumdark: #B0B8B8;
+$uilight: #ffffff;
+
+//media queries
+$smallHeight: 600px;
+$mediumHeight: 800px;
+
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+  ///////////////////////////////////////
+ // Fonts
+///////////////////////////////////////
+@font-face {
+    font-family: 'freighttext_proSBdIt';
+    src: url('../fonts/freigtexprosemit-webfont.eot');
+    src: url('../fonts/freigtexprosemit-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/freigtexprosemit-webfont.woff') format('woff'),
+         url('../fonts/freigtexprosemit-webfont.ttf') format('truetype'),
+         url('../fonts/freigtexprosemit-webfont.svg#freighttext_proSBdIt') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'freighttext_probook';
+    src: url('../fonts/freigtexprobook-webfont.eot');
+    src: url('../fonts/freigtexprobook-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/freigtexprobook-webfont.woff') format('woff'),
+         url('../fonts/freigtexprobook-webfont.ttf') format('truetype'),
+         url('../fonts/freigtexprobook-webfont.svg#freighttext_probook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+  ///////////////////////////////////////
+ // Main styles
+///////////////////////////////////////
+
+html{
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background: #FAFAFA;
+}
+
+body{
+    font-family: 'freighttext_probook', "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+.wrapper{
+    position: relative;
+}
+img{
+    //no click through of images
+    pointer-events: none;
+}
+nav{
+    -webkit-transition: 0.4s ease-out;
+    -moz-transition: 0.4s ease-out;
+    -o-transition: 0.4s ease-out;
+    -ms-transition: 0.4s ease-out;
+    transition: 0.4s ease-out;
+    z-index: 99;
+    background: $uidark;
+    position: fixed;
+    left: -320px;
+    top: 0px;
+    width: 100%;
+    max-width: 320px;
+    height: 100%;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    transform: translateX(0px);
+    &.slideout{
+        -webkit-transform: translateX(320px);
+        -moz-transform: translateX(320px);
+        -o-transform: translateX(320px);
+        -ms-transform: translateX(320px);
+        transform: translateX(320px);
+    }
+    ul{
+        padding: 0px;
+        margin: 32px 12px;
+        li{
+            -webkit-transition: 0.2s ease-out;
+            -moz-transition: 0.2s ease-out;
+            -o-transition: 0.2s ease-out;
+            -ms-transition: 0.2s ease-out;
+            transition: 0.2s ease-out;
+            font-size: 20px;
+            line-height: 28px;
+            padding: 12px 0px;
+            cursor: pointer;
+            text-align: center;
+            color: $uimedium;
+            &:hover{
+                color: $uilight;
+            }
+            @media screen and (max-height: $mediumHeight) {
+                font-size: 18px;
+                &:nth-of-type(2){
+                    margin-top: 25%;
+                }
+            }
+            @media screen and (max-height: $smallHeight) {
+                font-size: 16px;
+            }
+        }
+        .logo{
+            width: 100%;
+            padding: 32px 0px 32px 0px;
+            img{
+                width: 80%;
+                margin: 0px 10%;
+            }
+            @media screen and (max-height: $smallHeight) {
+                display: none;
+            }
+        }
+    }
+    .credits{
+        position: absolute;
+        bottom: 0px;
+        margin: 12px 0px;
+        width: 100%;
+        p{ 
+            margin: 0px 16px;
+            padding: 0px;
+            color: $uimediumdark;
+            font-size: 10px;
+            line-height: 14px;
+            text-align: center;
+            a{
+                color: $uimediumdark;
+                border-bottom: 1px dotted $uimediumdark;
+                text-decoration: none;
+                &:hover{
+                    border-bottom: 1px solid $uimediumdark;
+                }
+            }
+            &:first-of-type{
+                @media screen and (max-height: $mediumHeight) {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.scrollNext{
+    z-index: 98;
+    cursor: pointer;
+    position: fixed;
+    background: red;
+    height: 48px;
+    width: 48px;
+    display: none;
+}
+.scrollsnap{
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+
+.showNav{
+    position: fixed;
+    z-index: 3;
+    left: 16px;
+    top: 16px;
+    border-radius: 8px;
+    z-index: 100;
+    cursor: pointer;
+    -webkit-transition: 0.4s ease-out;
+    -moz-transition: 0.4s ease-out;
+    -o-transition: 0.4s ease-out;
+    -ms-transition: 0.4s ease-out;
+    transition: 0.4s ease-out;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    transform: translateX(0px);
+    @media screen and (max-height: $smallHeight) {
+        top: 8px;
+        left: 8px;
+    }
+    &:hover{
+        background: $uidark;
+        .showNavIcon{
+            .lineOne, .lineTwo, .lineThree{
+                background: $uilight;
+            }
+        }
+    }
+    .showNavIcon{
+        height: 24px;
+        width: 24px;
+        margin: 8px;
+        position: relative;
+        .lineOne, .lineTwo, .lineThree{
+            position: absolute;
+            left: 2px;
+            width: 20px;
+            height: 2px;
+            border-radius: 2px;
+            background: $uidark;
+            -webkit-transition: 0.4s;
+            -moz-transition: 0.4s;
+            -o-transition: 0.4s;
+            -ms-transition: 0.4s;
+            transition: 0.4s;
+        }
+        .lineOne{
+            top: 4px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        .lineTwo{
+            top: 11px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        .lineThree{
+            top: 18px;
+            opacity: 1;
+        }
+    }
+    &.slideout{
+        -webkit-transform: translateX(248px);
+        -moz-transform: translateX(248px);
+        -o-transform: translateX(248px);
+        -ms-transform: translateX(248px);
+        transform: translateX(248px);
+        @media screen and (max-height: $smallHeight) {
+            -webkit-transform: translateX(256px);
+            -moz-transform: translateX(256px);
+            -o-transform: translateX(256px);
+            -ms-transform: translateX(256px);
+            transform: translateX(256px);
+        }
+        .showNavIcon{
+            .lineOne, .lineTwo, .lineThree{
+                background: $uilight;
+            }
+            .lineOne{
+                top: 11px;
+                -webkit-transform: rotate(-45deg);
+                -moz-transform: rotate(-45deg);
+                -o-transform: rotate(-45deg);
+                -ms-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+            }
+            .lineTwo{
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -o-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            .lineThree{
+                opacity: 0;
+            }
+        }
+    }
+}
+
+  ///////////////////////////////////////
+ // Section Texts
+///////////////////////////////////////
+h2{ 
+    color: $textcolor;
+    font-family: 'freighttext_proSBdIt', "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+    font-size: 28px;
+    line-height: 32px;
+    padding: 44px 10% 0px 10%;
+    margin: 0px;
+}
+p{
+    font-size: 17px;
+    line-height: 24px;
+    padding: 16px 10% 44px 10%;
+    margin: 0px;
+    color: $textcolor;
+    //smaller screens = 16px
+    @media screen and (max-height: $mediumHeight) {
+        font-size: 16px;
+    }
+    @media screen and (max-height: $smallHeight) {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+//center text
+.centerText{
+    display: table;
+    height: 100%;
+}
+.textContainer{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+  ///////////////////////////////////////
+ // Section 1: Buildings
+///////////////////////////////////////
+@-webkit-keyframes cloudOne {
+    0%   { -webkit-transform: translateX(0px); }
+    100% { -webkit-transform: translateX(-900px); }
+}
+@-moz-keyframes cloudOne {
+    0%   { -moz-transform: translateX(0px); }
+    100% { -moz-transform: translateX(-900px); }
+}
+@-o-keyframes cloudOne {
+    0%   { -o-transform: translateX(0px); }
+    100% { -o-transform: translateX(-900px); }
+}
+@keyframes cloudOne {
+    0%   { transform: translateX(0px); }
+    100% { transform: translateX(-900px); }
+}
+@-webkit-keyframes cloudTwo {
+    0%   { -webkit-transform: translateX(0px); }
+    100% { -webkit-transform: translateX(900px); }
+}
+@-moz-keyframes cloudTwo {
+    0%   { -moz-transform: translateX(0px); }
+    100% { -moz-transform: translateX(900px); }
+}
+@-o-keyframes cloudTwo {
+    0%   { -o-transform: translateX(0px); }
+    100% { -o-transform: translateX(900px); }
+}
+@keyframes cloudTwo {
+    0%   { transform: translateX(0px); }
+    100% { transform: translateX(900px); }
+}
+
+section.sceneOne{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -ms-transform-origin: center;
+    -o-transform-origin: center;
+    transform-origin: center;
+}
+
+.sceneOneText{
+    position: fixed;
+    overflow: scroll;
+    width: 100%;
+    max-width: 520px;
+    height: 100%;
+    right: 0px;
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    transform: translateX(0px);
+    opacity: 0;
+    .textContainer{
+        h2, p{
+            background: $textbackground;
+        }
+    }
+    .scrollNext{
+        right: 24px;
+        bottom: 16px;
+    }
+}
+
+.clouds{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    background: #DEF3F5;
+    img{
+        position: fixed;
+        top: 0px;
+        height: 100%;
+        &:first-of-type{
+            left: 0px;
+        }
+        &:nth-of-type(2){
+            right: 0px;
+            -webkit-animation: cloudOne 60s linear 0s infinite alternate;
+            -moz-animation:    cloudOne 60s linear 0s infinite alternate;
+            -o-animation:      cloudOne 60s linear 0s infinite alternate;
+            animation:         cloudOne 60s linear 0s infinite alternate;
+        }
+        &:last-of-type{
+            left: 0px;
+            -webkit-animation: cloudTwo 60s linear 0s infinite alternate;
+            -moz-animation:    cloudTwo 60s linear 0s infinite alternate;
+            -o-animation:      cloudTwo 60s linear 0s infinite alternate;
+            animation:         cloudTwo 60s linear 0s infinite alternate;
+        }
+    }
+}
+img.titleContainer{
+    position: fixed;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    @media screen and (max-aspect-ratio: 4/3){//squarish
+        z-index: 97;
+    }
+    @media screen and (orientation: portrait){
+        height: auto;
+        width: 100%;
+    }
+}
+.titleScroll{
+    bottom: 128px;
+    left: 25%;
+}
+img.skyscrapers{
+    position: fixed;
+    height: 200%;
+    top: 0px;
+    right: 0px;
+    @media screen and (min-aspect-ratio: 16/9){//wide
+        right: auto;
+        left: 0px;
+    }
+    @media screen and (orientation: portrait){
+        height: 150%;
+        top: 50%;
+    }
+}
+img.street{
+    position: fixed;
+    height: 100%;
+    top: 100%;
+    left: -5%;
+}
+
+  ///////////////////////////////////////
+ // Section 2: Stickies
+///////////////////////////////////////
+section.sceneTwo{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #e8e3dd;
+}
+
+//background
+img.woodDesk{
+    position: fixed;
+    height: 100%;
+    min-width: 100%;
+    width: auto;
+    top: 100%;
+    left: 0px;
+}
+img.coffee{
+    position: fixed;
+    height: 45%;
+    bottom: -45%;
+    left: -20%;
+    @media screen and (max-aspect-ratio: 4/3){//squarish
+        left: -40%;
+    }
+}
+.stickyNotes{
+    position: fixed;
+    height: 45%;
+    top: -45%;
+    left: -15%;
+    .stickyNotesImg, #ideo{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+    }
+    @media screen and (max-aspect-ratio: 4/3){//squarish
+        left: -30%;
+    }
+    @media screen and (max-height: $smallHeight) {
+        left: -30%;
+    }
+    @media screen and (orientation: portrait){
+        display: none;
+    }
+}
+img.marker1{
+    position: fixed;
+    height: 50%;
+    top: -50%;
+    left: -20%;
+    @media screen and (max-aspect-ratio: 4/3){//squarish
+        display: none;
+    }
+    @media screen and (max-height: $smallHeight) {
+        display: none;
+    }
+}
+.sceneTwoText{
+    position: fixed;
+    width: 80%;
+    max-width: 480px;
+    height: 100%;
+    right: -480px;
+    .textContainer{
+        overflow: auto;
+        display: block;
+        height: 100%;
+        height: 100vh;
+        vertical-align: baseline;
+        @media screen and (max-width: 600px) {
+            height: 104vw;
+        }
+    }
+    .mainpage, .backpage1, .backpage2{
+        position: absolute;
+        top: 0px;
+        height: 0px;
+        width: 100%;
+        padding-bottom: 130%;
+        border: 4px solid #dbdbdb;
+        background: $textbackground;
+    }
+    img.marker2{
+        position: absolute;
+        height: 50%;
+        bottom: 72px;
+        left: 0px;
+        z-index: 3;
+        @media screen and (max-aspect-ratio: 4/3){//squarish
+            display: none;
+        }
+        @media screen and (max-height: $smallHeight) {
+            display: none;
+        }
+    }
+}
+
+  ///////////////////////////////////////
+ // Section 3: Cruise
+///////////////////////////////////////
+section.sceneThree{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 70%;
+    left: -25%;
+    -webkit-transform: translate3d(0,100%,0) rotate(-50deg) scale(0.3);
+    -ms-transform: translate3d(0,100%,0) rotate(-50deg) scale(0.3);
+    -o-transform: translate3d(0,100%,0) rotate(-50deg) scale(0.3);
+    transform: translate3d(0,100%,0) rotate(-50deg) scale(0.3);
+}
+img.phone{
+    position: absolute;
+    height: 125%;
+    top: -12.5%;
+    left: 50%;
+    z-index: -1;
+}
+.sceneThreeText{
+    position: absolute;
+    left: 8%;
+    top: 0px;
+    width: 100%;
+    max-width: 520px;
+    height: 100%;
+    overflow: auto;
+    h2, p{
+        color: $textcolorlight;
+        text-shadow: 0px 0px 8px rgba(0,0,0,0.4);
+    }
+    p{
+        @media screen and (orientation: portrait){
+            text-shadow: 0px 0px 4px #000000, 0px 0px 8px #000000;
+        }
+    }
+    @media screen and (orientation: portrait){
+        left: 0px;
+    }
+}
+.screenflash{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #ffffff;
+    opacity: 0.4;
+    z-index: 4;
+    -webkit-transform: rotateY(-90deg);
+    -ms-transform: rotateY(-90deg);
+    -o-transform: rotateY(-90deg);
+    transform: rotateY(-90deg);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    pointer-events: none;
+    @media screen and (min-aspect-ratio: 16/9){//wide
+        width: 189vh;
+        left: 50%;
+        margin-left: -94.5vh;
+    }
+}
+.skylineBackground{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    -webkit-transform: rotateY(-90deg);
+    -ms-transform: rotateY(-90deg);
+    -o-transform: rotateY(-90deg);
+    transform: rotateY(-90deg);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+    @media screen and (min-aspect-ratio: 16/9){//wide
+        width: 189vh;
+        left: 50%;
+        margin-left: -94.5vh;
+        overflow: hidden;
+    }
+}
+img.skylineBackgroundImage{
+    position: absolute;
+    height: 100%;
+    width: auto;
+    top: 0px;
+    right: 0px;
+    @media screen and (min-aspect-ratio: 16/9){//wide
+        left: 50%;
+        margin-left: -94.5vh; //since image width is 189% of the height, and divide that by 2
+    }
+}
+img.moon{
+    position: absolute;
+    top: 0px;
+    right: -5%;
+    height: 100%;
+}
+img.statue{
+    position: absolute;
+    height: 100%;
+    top: 0px;
+    right: 0px;
+}
+img.boat{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 40%;
+    @media screen and (max-aspect-ratio: 4/3){//squarish
+        right: -40%;
+    }
+    @media screen and (orientation: portrait){
+        right: 0px;
+    }
+}
+
+  ///////////////////////////////////////
+ // Section 4: Culture
+///////////////////////////////////////
+section.sceneFour{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+img.radioCityLeft{
+    position: fixed;
+    left: 100%;
+    top: 0px;
+    height: 100%;
+}
+.radioCityRight{
+    position: fixed;
+    right: -100%;
+    top: 0px;
+    height: 100%;
+    width: 560px;
+    display: none;
+    @media screen and (max-width: 1050px) {
+        width: 480px;
+    }
+    .radioCityBackgroundRight{
+        background: url("../img/culture/radioCityBackgroundRight.png") repeat-x;
+        background-size: 1px 100%;
+        height: 100%;
+        width: 460px;
+        position: absolute;
+        top: 0px;
+        left: 100px;
+        @media screen and (orientation: portrait){
+            display: none;
+        }
+        @media screen and (max-height: $smallHeight) {
+            display: none;
+        }
+    }
+    img.radioCityRightImage{
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100px;
+        @media screen and (orientation: portrait){
+            display: none;
+        }
+        @media screen and (max-height: $smallHeight) {
+            display: none;
+        }
+    }
+}
+img.taxiLarge{
+    position: fixed;
+    left: 100%;
+    top: 0px;
+    height: 100%;
+    pointer-events: none;
+}
+img.taxiSmall{
+    position: fixed;
+    left: 100%;
+    top: 0px;
+    height: 100%;
+    pointer-events: none;
+}
+.sceneFourText{
+    background: #E2DEDE;
+    position: fixed;
+    right: -100%;
+    top: 32px;
+    width: 100%;
+    width: 70vw;
+    max-width: 490px;
+    max-height: 75%;
+    -webkit-box-shadow: -6px 3px 0px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow:    -6px 3px 0px 0px rgba(0, 0, 0, 0.3);
+    box-shadow:         -6px 3px 0px 0px rgba(0, 0, 0, 0.3);
+    h2, p{
+        color: $textcolor;
+    }
+    .textContainer{
+        overflow: auto;
+        max-height: 100%;
+        max-height: 75vh;
+        display: block;
+        vertical-align: baseline;
+        z-index: 3;
+        @media screen and (orientation: portrait){
+            max-height: 40vh;
+        }
+    }
+    @media screen and (orientation: portrait){
+        max-height: 40%;
+        top: 25px;
+    }
+    @media screen and (max-height: $mediumHeight) {
+        top: 15px;
+    }
+}
+.billboardTop{
+    position: absolute;
+    width: 100%;
+    height: 240px;
+    top: -16px;
+    left: 0px;
+    background: url("../img/culture/billboardTop.png") repeat-x;
+    pointer-events: none;
+}
+.billboardBottom{
+    position: absolute;
+    width: 100%;
+    height: 24px;
+    bottom: -12px;
+    left: -6px;
+    background: url("../img/culture/billboardBottom.png") repeat-x;
+    padding: 0px 12px;
+    pointer-events: none;
+}
+
+  ///////////////////////////////////////
+ // Section 4: Goodbye
+///////////////////////////////////////
+section.sceneFive{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+.sceneFiveText{
+    position: fixed;
+    overflow: auto;
+    left: 50%;
+    margin-left: -520px;
+    height: 100%;
+    width: 100%;
+    max-width: 520px;
+    opacity: 0;
+    -webkit-transform:  translateY(-150px);
+    -ms-transform:      translateY(-150px);
+    -o-transform:       translateY(-150px);
+    transform:          translateY(-150px);
+    display: none;
+    @media screen and (max-aspect-ratio: 4/3){//squarish
+        margin-left: -260px;
+    }
+    @media screen and (max-height: $mediumHeight) {
+        margin-left: -390px; //75% width
+    }
+    @media screen and (max-height: $smallHeight) {
+        margin-left: -260px; //50% width
+    }
+    @media screen and (orientation: portrait){
+        margin-left: 0px;
+        left: 0px;
+    }
+}
+.skyBackground{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: #DEF3F5;
+    opacity: 0;
+    pointer-events: none;
+    img{
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        height: 100%; 
+    } 
+}
+img.plane{
+    position: fixed;
+    top: 90%;
+    height: 100%;
+    left: 50%;
+    -webkit-transform:  rotate(13deg) translate3d(0, 50%, 0);
+    -ms-transform:      rotate(13deg) translate3d(0, 50%, 0);
+    -o-transform:       rotate(13deg) translate3d(0, 50%, 0);
+    transform:          rotate(13deg) translate3d(0, 50%, 0);
+    &.animatePlane{
+        -webkit-animation: planeSlideUp 25s normal forwards ease-out;
+        -moz-animation:    planeSlideUp 25s normal forwards ease-out;
+        -o-animation:      planeSlideUp 25s normal forwards ease-out;
+        animation:         planeSlideUp 25s normal forwards ease-out;
+    }
+}
+@-webkit-keyframes planeSlideUp {
+    0%   { -webkit-transform: rotate(13deg) translate3d(0%, 50%, 0);
+                    transform: rotate(13deg) translate3d(0%, 50%, 0); }
+    100% { -webkit-transform: rotate(13deg) translate3d(11.5%, 0%, 0);
+                    transform: rotate(13deg) translate3d(11.5%, 0%, 0); }
+}
+@-moz-keyframes planeSlideUp {
+    0%   { -moz-transform: rotate(13deg) translate3d(0%, 50%, 0);
+                transform: rotate(13deg) translate3d(0%, 50%, 0); }
+    100% { -moz-transform: rotate(13deg) translate3d(11.5%, 0%, 0);
+                transform: rotate(13deg) translate3d(11.5%, 0%, 0); }
+}
+@-o-keyframes planeSlideUp {
+    0%   { -o-transform: rotate(13deg) translate3d(0%, 50%, 0); }
+    100% { -o-transform: rotate(13deg) translate3d(11.5%, 0%, 0); }
+}
+@keyframes planeSlideUp {
+    0%   { transform: rotate(13deg) translate3d(0%, 50%, 0); }
+    100% { transform: rotate(13deg) translate3d(11.5%, 0%, 0); }
+}
+
+
+
